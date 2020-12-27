@@ -1,0 +1,25 @@
+## Transform seurat to loom file
+
+## Dependencies
+library(Seurat)
+library(loomR)
+
+## Loading seurat file
+seurat <- snakemake@input[['seurat2loom']][['seurat_file']]
+
+## Set output path
+loom <- snakemake@input[['seurat2loom']][['out_loom_path']]
+
+## Cleaning annotations
+for (i in 1:ncol(seurat@meta.data)) {
+        if ( class(seurat@meta.data[,i]) %in% c('character', 'factor')){
+                seurat@meta.data[ ,i] <- as.character(seurat@meta.data[,i])
+                seurat@meta.data[ ,i][is.na(seurat@meta.data[ ,i])] <- 'NA'
+        }
+}
+
+print('')
+seurat.loom <- as.loom(x = seurat, 
+                      filename = loom,
+                      overwrite = TRUE)
+tumor.loom$close_all()
