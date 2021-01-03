@@ -1,0 +1,26 @@
+
+## seurat2loom parameters 
+seurat2loom:
+    seurat_file: '/media/ag-cherrmann/cramirez/organoids/data/colon_covid19_imm_ent_2_seu.rds'
+    out_loom_path: '/media/ag-cherrmann/cramirez/organoids/data/colon_covid19_imm_ent_2_renamed.loom'
+
+
+
+## scarches_scanvi parameters
+scarches_scanvi:
+    reference_loom: '/media/ag-cherrmann/cramirez/organoids/data/smillie2019/annData/epi_smillie2019.loom'
+    query_loom: '/media/ag-cherrmann/cramirez/organoids/data/colon_covid19_imm_ent_2_renamed.loom'
+    results_dir: '/media/ag-cherrmann/cramirez/organoids/analysis/scarches/'   
+    ref_batch_column: 'Subject'
+    ref_cell_type_column: 'Cluster'
+    query_batch_column: 'ClusterName'
+    query_cell_type_column: 'CellTypes'
+    n_top_hvg: 5000
+    subsampling_fraction: 0.3
+    vae_epochs: 500
+    scanvi_epochs: 500
+    surgery_epochs: 500
+    n_epochs_kl_warmup: 50
+    query_latent_umap: 'query_latent_epochs=500.pdf'
+    integrated_latent_umap: 'integrated_latent_epochs=500.pdf'
+    reference_latent_umap: 'reference_latent_epochs=500.pdf'
